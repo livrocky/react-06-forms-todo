@@ -15,12 +15,14 @@ function SingleTodo({ title }) {
 
   function clickHandler() {
     console.log('Paspaudei');
+    // setIsDone(() => {});
+    // setIsDone(!isDone);
+    setIsDone((prevIsDone) => !prevIsDone);
   }
 
   return (
     <li className={isDone === true ? 'item line-through' : 'item'}>
       <Icon onClick={clickHandler} icon={isDone === true ? 'fa-check-circle' : 'fa-circle-thin'} />
-      {/* <i onClick={clickHandler} className={`fa fa-home`} aria-hidden='true'></i> */}
       <span className='text'>{title}</span>
       <Icon icon='fa-pencil' />
       <Icon icon='fa-trash' />
