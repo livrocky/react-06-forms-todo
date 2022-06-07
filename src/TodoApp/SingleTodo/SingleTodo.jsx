@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Icon from '../UI/Icon';
 
-function SingleTodo({ title, isDone: isDoneProp }) {
+export default function SingleTodo({ title, isDone: isDoneProp }) {
   const [isDone, setIsDone] = useState(isDoneProp);
 
   // fa-check-circle => done todo
@@ -10,14 +10,20 @@ function SingleTodo({ title, isDone: isDoneProp }) {
   // item => ne done todo
   // fa-circle-thin => ne done todo
 
-  // kai paspaudziu ant rutuliuko ikoneles iskonsolinu "paspaudei"
-  // kai paspaudziu ant rutuliuko ikoneles pakeiciu isDone statusa i priesinga
+  // kai paspaudziu ant rutulioko ikoneles pakeiciu isDone statusa i priesinga
+  // kai paspaudziu ant rutulioko ikoneles iskonsolinu "paspaudei"
 
   function clickHandler() {
-    console.log('Paspaudei');
-    // setIsDone(() => {});
-    // setIsDone(!isDone);
-    setIsDone((prevIsDone) => !prevIsDone);
+    // kai paspaudziu ant <i className={`fa fa-home`} aria-hidden='true'></i> iskonsolinu "paspaudei"
+    console.log('paspaudei');
+
+    // pakeisti statusa i true
+    // setIsDone(true) // kai state nepriklauso nuo pries tai buvusios
+
+    // pakeisti statusa i priesinga dabartiniam
+    // setIsDone(!isDone); // kai state nepriklauso nuo pries tai buvusios
+
+    setIsDone((prevIsDone) => !prevIsDone); // kai state priklauso nuo pries tai buvusios
   }
 
   return (
@@ -29,5 +35,3 @@ function SingleTodo({ title, isDone: isDoneProp }) {
     </li>
   );
 }
-
-export default SingleTodo;
