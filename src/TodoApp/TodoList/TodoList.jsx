@@ -17,11 +17,9 @@ export default function TodoList() {
     setNewTodo(event.target.value);
   }
 
-  //
-
   // sukurti funkcija kuri prideda nauja todo
   function createTodo() {
-    const todo = { id: 3, title: 'newTodo.value', isDone: false };
+    const todo = { id: 3, title: newTodo.value, isDone: false };
     console.log('todo ===', todo);
     setTodoArray([...todoArray, todo]);
 
@@ -75,4 +73,3 @@ export default function TodoList() {
 //       setNewTodo('');
 //     }
 //     return;
-//
