@@ -8,7 +8,8 @@ function AddTodo(props) {
   // AddTodo susieti state su input
   // kai AddTodo kvieciam HandleAddTodo argumentu pagal input reiksme (isState)
 
-  function handleNewTodo() {
+  function handleNewTodo(event) {
+    event.preventDefault();
     inputEl.current.focus();
     // TODO: show error on empty input
     if (newTodoInput === '') return;
@@ -18,11 +19,13 @@ function AddTodo(props) {
   }
 
   return (
-    <div className='add-item'>
-      <Icon onClick={handleNewTodo} icon='fa-plus-circle' />
+    <form onSubmit={handleNewTodo} className='add-item'>
+      <button>
+        <Icon icon='fa-plus-circle' />
+      </button>
       <input ref={inputEl} type='text' placeholder='Add todo' onChange={(event) => setNewTodoInput(event.target.value)} value={newTodoInput} />
       {/* <h2>{newTodoInput}</h2> */}
-    </div>
+    </form>
   );
 }
 
