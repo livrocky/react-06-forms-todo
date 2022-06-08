@@ -1,9 +1,18 @@
-export default function AddTodo({ onClick, onChange }) {
+import { useState } from 'react';
+import Icon from '../UI/Icon';
+
+function AddTodo(props) {
+  // AddTodo sukurti state
+  const [newTodoInput, setNewTodoInput] = useState('');
+  // AddTodo susieti state su input
+  // kai AddTodo kvieciam HandleAddTodo argumentu pagal input reiksme (isState)
   return (
     <div className='add-item'>
-      <p id='error-msg'></p>
-      <i onClick={onClick} id='add-todo-btn' className='fa fa-plus-circle' aria-hidden='true'></i>
-      <input type='text' id='input' placeholder='Add todo' onChange={onChange} />
+      <Icon onClick={props.onAddTodo} icon='fa-plus-circle' />
+      <input type='text' placeholder='Add todo' onChange={(event) => setNewTodoInput(event.target.value)} value={newTodoInput} />
+      <h2>{newTodoInput}</h2>
     </div>
   );
 }
+
+export default AddTodo;
