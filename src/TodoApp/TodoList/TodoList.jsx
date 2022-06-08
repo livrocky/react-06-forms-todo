@@ -1,75 +1,44 @@
-import { useState } from 'react';
-import AddTodo from '../AddTodo/AddTodo';
 import SingleTodo from '../SingleTodo/SingleTodo';
+import { useState } from 'react';
 
 const initTodos = [
-  { id: 1, title: 'Do sport', isDone: true },
-  { id: 2, title: 'Do jogging', isDone: false },
+  { id: 1, title: 'Do Sports', isDone: true },
+  { id: 2, title: 'Go Hiking', isDone: false },
+  { id: 3, title: 'Buy Sugar', isDone: false },
 ];
 
-export default function TodoList() {
-  const [todoArray, setTodoArray] = useState(initTodos);
-  const [newTodo, setNewTodo] = useState('');
-
-  console.log('todoArray ===', todoArray);
-
-  function todoEnterHandler(event) {
-    setNewTodo(event.target.value);
-  }
+function TodoList() {
+  const [mainTodoArray, setMainTodoArray] = useState(initTodos);
 
   // sukurti funkcija kuri prideda nauja todo
-  function createTodo() {
-    const todo = { id: 3, title: newTodo.value, isDone: false };
-    console.log('todo ===', todo);
-    setTodoArray([...todoArray, todo]);
+  // { id: 3, title: 'Buy Sugar', isDone: false }
+  // iskvieciam funkcija su myguko paspaudimu
 
-    setNewTodo('');
-  }
-
-  // { id: 3, title: 'Buy sugar', isDone: false }
-  // iskvieciam funkcija su mygtuko paspaudimu
-
-  // sukurti funkcija pagal toggleTodo(id)
+  // sukurti funkcija toggleTodo(id)
   // pasidarom todoArray kopija
-  // paiesko, todoArray kopijoj objekto su id lygiu id(argumenta)
-  // surade todo objekta pakeicia isDone statusa i priesinga
-  // atnaujinam state su pakeistu objektu
+  // paiesiskom todoArray kopijoj objekto su id lygiu id(argumenta)
+  // surade todo objekta pakeicia jo isDone i priesinga
+  // atnaujinam state su kopija pakeistu objektu
+
+  // delete
+  // atnaujinti state su kopija state kurioje nera to el kuri trynem
+  function handleDelete(deleteId) {
+    console.log('handleDelete was initiated by todo with id', deleteId);
+  }
 
   return (
     <section className='content'>
       <ul id='list' className='list'>
-        {todoArray.map((tObj) => (
-          <SingleTodo key={tObj.id} title={tObj.title} isDone={tObj.isDone} />
+        {mainTodoArray.map((tObj) => (
+          <SingleTodo key={tObj.id} {...tObj} onDelete={handleDelete} />
         ))}
-
-        {/* <SingleTodo {...todoArray[0]} /> */}
-        {/* <SingleTodo {...todoArray[1]} />
-        <SingleTodo {...{ id: 3, title: 'Buy sugar', isDone: false }} /> */}
-
-        <li className='item line-through'>
-          <i className='fa fa-check-circle make-done' aria-hidden='true'></i>
-          <span className='text'> done todo</span>
-          <i className='fa fa-pencil edit-icon' aria-hidden='true'></i>
-          <i className='fa fa-trash delete-icon' aria-hidden='true'></i>
-        </li>
       </ul>
-      <AddTodo onClick={createTodo} onChange={todoEnterHandler} />
+      <div className='add-item'>
+        <i id='add-todo-btn' className='fa fa-plus-circle' aria-hidden='true'></i>
+        <input type='text' id='input' placeholder='Add todo' />
+      </div>
     </section>
   );
 }
 
-// function errorMsg() {
-//     const errEl = document.getElementById('error-msg');
-//     if (newTodo.length > 0) {
-//       errEl.textContent = 'Added new Todo ';
-//       errEl.style.color = 'green';
-//       setNewTodo('');
-//     }
-
-//     if (newTodo.length < 1) {
-//       console.log('newTodo.length ===', newTodo.length);
-//       errEl.textContent = 'Please enter something';
-//       errEl.style.color = 'red';
-//       setNewTodo('');
-//     }
-//     return;
+export default TodoList;
