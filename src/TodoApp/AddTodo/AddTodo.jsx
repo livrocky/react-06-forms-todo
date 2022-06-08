@@ -8,9 +8,9 @@ function AddTodo(props) {
   // kai AddTodo kvieciam HandleAddTodo argumentu pagal input reiksme (isState)
   return (
     <div className='add-item'>
-      <Icon onClick={props.onAddTodo} icon='fa-plus-circle' />
+      <Icon onClick={() => props.onAddTodo(newTodoInput)} icon='fa-plus-circle' />
       <input type='text' placeholder='Add todo' onChange={(event) => setNewTodoInput(event.target.value)} value={newTodoInput} />
-      <h2>{newTodoInput}</h2>
+      {/* <h2>{newTodoInput}</h2> */}
     </div>
   );
 }
