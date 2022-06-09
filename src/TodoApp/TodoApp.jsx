@@ -20,8 +20,21 @@ function TodoApp() {
     setMainTodoArray([]);
   }
 
-  // sukurti funkcija kuri prideda nauja todo
-  // iskviesti handleAddTodo esancia TodoList is AddTodo.jsx
+  function handleUpdateTodo(updateTodoId, updatedTitle) {
+    console.log('handleUpdateTodo called in TodoApp', updateTodoId, updatedTitle);
+    // nemutuodami mainTodoArray
+    // surasti obj kurio id === updateTodoId ir atnaujinti jo title su updatedTitle
+    setMainTodoArray((prevMainTodoArray) =>
+      prevMainTodoArray.map((tObj) => {
+        // jei tai yra tas objektas kuris yra atnaujintas
+        if (tObj.id === updateTodoId) {
+          return { ...tObj, title: updatedTitle };
+        }
+        return { ...tObj };
+      })
+    );
+  }
+
   function handleAddTodo(titleFromInput) {
     console.log('handleAddTodo called', titleFromInput);
     const newTodoItem = { id: uuid(), title: titleFromInput, isDone: false };
@@ -59,11 +72,14 @@ function TodoApp() {
     setMainTodoArray(filtered);
   }
 
-  function doneNotDoneTodos() {}
+  // computed properties
+  const totalTodos = mainTodoArray.length;
+  const doneTodos = mainTodoArray.filter((tObj) => tObj.isDone === true).length;
+
   return (
     <div className='container'>
-      <Header onResetTodos={handleResetTodos} />
-      <TodoList todos={mainTodoArray} onAddTodo={handleAddTodo} onToggle={handleToggleTodo} onDelete={handleDelete} />
+      <Header onResetTodos={handleResetTodos} total={totalTodos} doneTodos={doneTodos} />
+      <TodoList todos={mainTodoArray} onAddTodo={handleAddTodo} onToggle={handleToggleTodo} onDelete={handleDelete} onEdit={handleUpdateTodo} />
     </div>
   );
 }

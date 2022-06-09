@@ -1,7 +1,4 @@
 import Icon from '../UI/Icon';
-// paduoti handeResetTodos i header
-// pasiimti handleResetTodos ir reset mygtuko paspaudimu ivykgyti
-// header.jsx ivykdyti handleResetTodos()
 
 function Header(props) {
   return (
@@ -10,7 +7,9 @@ function Header(props) {
         <Icon onClick={props.onResetTodos} icon={'fa-refresh'} />
         {/* <i id='reset' className='fa fa-refresh'></i> */}
       </div>
-      <h3 className='done-todo-count'>0 / 0</h3>
+      <h3 className='done-todo-count'>
+        {props.doneTodos} / {props.total}
+      </h3>
       <p id='date' className='date'>
         {new Date().toLocaleString()}
       </p>

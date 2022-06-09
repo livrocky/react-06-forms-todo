@@ -7,7 +7,7 @@ function TodoList(props) {
     <section className='content'>
       <ul id='list' className='list'>
         {props.todos.map((tObj) => (
-          <SingleTodo key={tObj.id} {...tObj} onDelete={props.onDelete} onToggle={props.onToggle} />
+          <SingleTodo key={tObj.id} {...tObj} onDelete={props.onDelete} onToggle={props.onToggle} onEdit={props.onEdit} />
         ))}
       </ul>
       <AddTodo onAddTodo={props.onAddTodo} />
