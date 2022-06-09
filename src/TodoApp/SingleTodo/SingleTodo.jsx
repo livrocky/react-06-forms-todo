@@ -2,12 +2,6 @@ import { useState } from 'react';
 import Icon from '../UI/Icon';
 
 function SingleTodo({ id, title, isDone: isDoneProp, onDelete, onToggle }) {
-  // fa-check-circle => done todo
-  // item line-through => done todo
-
-  // item  => ne done todo
-  // fa-circle-thin  => ne done todo
-
   // kai paspaudziu ant rutulioko ikoneles iskonsolinu "paspaudei"
   // kai paspaudziu ant <i className={`fa fa-home`} aria-hidden='true'></i> iskonsolinu "paspaudei"
 
