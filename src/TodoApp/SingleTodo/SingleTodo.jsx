@@ -30,7 +30,7 @@ function SingleTodo({ id, title, isDone: isDoneProp, onDelete, onToggle, onEdit 
       {/* Rodom jei isEditOn yra true */}
       {isEditOn === true && <input type='text' onChange={(event) => setEditedTitle(event.target.value)} value={editedTitle} />}
 
-      <Icon onClick={singleTodoEdit} icon='fa-pencil' />
+      {isDoneProp === false && <Icon onClick={singleTodoEdit} icon='fa-pencil' />}
       <Icon onClick={() => onDelete(id)} icon='fa-trash' />
     </li>
   );
